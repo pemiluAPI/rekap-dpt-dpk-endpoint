@@ -4,7 +4,7 @@ module Pemilu
     prefix 'api'
     format :json
 
-    resource :rekapitulasi_dpt do
+    resource :rekap_dpt do
       desc "Return all dpt"
       get do
         dpts = Array.new
@@ -48,7 +48,7 @@ module Pemilu
       end
     end
 
-    resource :rekapitulasi_dpk do
+    resource :rekap_dpk do
       desc "Return all rekapitulasi DPK"
       get do
         dpks = Array.new
