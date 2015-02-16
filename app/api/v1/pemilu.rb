@@ -5,7 +5,7 @@ module Pemilu
     format :json
 
     resource :rekap_dpt do
-      desc "Return all dpt"
+      desc "Return all rekapitulasi DPT"
       get do
         dpts = Array.new
 
@@ -19,8 +19,12 @@ module Pemilu
           conditions[value.to_sym] = params[key.to_sym] unless params[key.to_sym].blank?
         end
 
+        limit = (params[:limit].to_i == 0 || params[:limit].empty?) ? 33 : params[:limit]
+
         Dpt.includes(:province)
           .where(conditions)
+          .limit(limit)
+          .offset(params[:offset])
           .each do |dpt|
             dpts << {
               id: dpt.id,
@@ -35,13 +39,15 @@ module Pemilu
               total: dpt.total,
               tanggal_lahir_nihil: dpt.jumlah_tanggal_lahir_nihil,
               status_kawin_nihil: dpt.jumlah_status_kawin_nihil,
-              dibawah_umur: dpt.jumlah_dibawah_umur
+              dibawah_umur: dpt.jumlah_dibawah_umur,
+              tipe: dpt.tipe
             }
           end
 
         {
           results: {
             count: dpts.count,
+            total: Dpt.where(conditions).count,
             dpt: dpts
           }
         }
@@ -63,8 +69,12 @@ module Pemilu
           conditions[value.to_sym] = params[key.to_sym] unless params[key.to_sym].blank?
         end
 
+        limit = (params[:limit].to_i == 0 || params[:limit].empty?) ? 33 : params[:limit]
+
         Dpk.includes(:province)
           .where(conditions)
+          .limit(limit)
+          .offset(params[:offset])
           .each do |dpk|
             dpks << {
               id: dpk.id,
@@ -82,6 +92,7 @@ module Pemilu
         {
           results: {
             count: dpks.count,
+            total: Dpk.where(conditions).count,
             dpk: dpks
           }
         }
