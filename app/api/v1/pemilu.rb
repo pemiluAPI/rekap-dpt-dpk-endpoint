@@ -11,7 +11,8 @@ module Pemilu
 
         # Prepare conditions based on params
         valid_params = {
-          provinsi: 'provinsi_id'
+          provinsi: 'provinsi_id',
+          tipe: 'tipe'
         }
 
         conditions = Hash.new
