@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141028093354) do
+ActiveRecord::Schema.define(version: 20150216073811) do
 
   create_table "dpks", force: true do |t|
     t.integer "jumlah_laki_laki"
@@ -33,10 +33,9 @@ ActiveRecord::Schema.define(version: 20141028093354) do
     t.string  "jumlah_status_kawin_nihil"
     t.string  "jumlah_dibawah_umur"
     t.integer "provinsi_id"
+    t.string  "tipe"
   end
 
-  add_index "dpts", ["jumlah_laki_laki"], name: "index_dpts_on_jumlah_laki_laki", using: :btree
-  add_index "dpts", ["jumlah_perempuan"], name: "index_dpts_on_jumlah_perempuan", using: :btree
   add_index "dpts", ["provinsi_id"], name: "index_dpts_on_provinsi_id", using: :btree
 
   create_table "provinces", force: true do |t|
