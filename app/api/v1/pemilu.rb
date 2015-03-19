@@ -30,8 +30,8 @@ module Pemilu
             dpts << {
               id: dpt.id,
               provinsi: {
-                id: dpt.province.id,
-                nama: dpt.province.nama_lengkap
+                id: dpt.province_id,
+                nama: dpt.province_nama_lengkap
               },
               jumlah_tps: dpt.jumlah_tps,
               laki_laki: dpt.jumlah_laki_laki,
@@ -80,8 +80,8 @@ module Pemilu
             dpks << {
               id: dpk.id,
               provinsi: {
-                id: dpk.province.id,
-                nama: dpk.province.nama_lengkap
+                id: dpk.province_id,
+                nama: dpk.province_nama_lengkap
               },
               laki_laki: dpk.jumlah_laki_laki,
               perempuan: dpk.jumlah_perempuan,
